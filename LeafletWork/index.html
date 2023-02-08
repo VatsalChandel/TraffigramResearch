@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet Tutorial</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.css" />
+
+<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@v0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.4/dist/L.Control.Locate.min.css" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+</body>
+</html>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.74.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+
+
+<script>
+    // Interesting: pixels change on zoom not where  on screen
+
+
+    // Map initialization 
+    // Coordinate approx of Red Square UW
+    var map = L.map('map').setView([47.655777, -122.309388], 15);
+
+
+    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    osm.addTo(map);
+
+    var redSquare = new L.Marker([47.655777, -122.309388]);
+    var siegHall = new L.Marker([47.654874, -122.3065]);
+
+
+    redSquare.addTo(map);
+    siegHall.addTo(map);
+    
+    map.on("click", function(e) {
+        var latlng = e.latlng;
+        var pixelPosition = map.latLngToLayerPoint(latlng);
+        alert("LatLng = " + latlng + "\n Pixel position = " + pixelPosition);
+    });
+
+    marker.on('mouseover', function(e) {
+        var latlng = e.latlng;
+        var pixelPosition = map.latLngToLayerPoint(latlng);
+        alert("LatLng = " + latlng + "\n Pixel position = " + pixelPosition);
+    });
+
+
+
+
+    L.control.locate().addTo(map);
+
+
+</script>
